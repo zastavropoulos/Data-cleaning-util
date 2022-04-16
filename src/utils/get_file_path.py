@@ -18,6 +18,11 @@ def show_help() -> None:
             -h, --help: Instructions on how to run the script.
             -i, --ifile: Path for the input file. The input file should be in csv format.
             -o, --ofile: The name of the output file. The name should end with .csv extension.
+
+            Both input and output file paths should not contain whitespaces.
+            For ex:
+                -Correct: C:\\Users\\user\Desktop\\prepare_data\\data.csv
+                -False: C:\\Users\\user\Desktop\\prepare data\\data.csv
         '''
     )
 
