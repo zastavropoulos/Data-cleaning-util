@@ -1,6 +1,8 @@
 import pandas as pd
 import sys
 
+from utils.print_data import *
+
 
 class Data_handler():
     def __init__(self, data_path: str) -> None:
@@ -18,19 +20,16 @@ class Data_handler():
         print(
             f'\nThe dataset has {self.df.shape[0]} rows and {self.df.shape[1]} columns.\n')
 
-        for i, col in enumerate(self.df.columns.values.tolist(), start=1):
-            print(i, col)
+        print_info_as_table(self.headers, self.gather_data())
 
-    def print_header_frame(self, size_list: list) -> None:
-        self.top_string = '--'
-        for i in range(len(size_list)):
-            self.top_string += '-' * \
-                (max(size_list[i], len(self.headers[i]))+1)
-        print(self.top_string)
+    def gather_data(self) -> List[List]:
+        self.data = []
 
-    def print_header_names(self) -> None:
-        self.header_string = '|'
-        for header in self.headers:
-            self.header_string += header + '|'
+        self.null_counts = self.df.isnull().sum(axis=0).tolist()
+        self.dtypes = self.df.dtypes.values.tolist()
 
-        print(self.header_string)
+        for ind, col in enumerate(self.df.columns.values.tolist(), start=1):
+            self.data.extend(
+                [[ind, col,  self.dtypes[ind - 1], self.null_counts[ind - 1]]])
+
+        return self.data
