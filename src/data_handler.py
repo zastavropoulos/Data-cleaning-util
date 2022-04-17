@@ -5,6 +5,7 @@ from utils.print_data import *
 
 
 class Data_handler():
+    # TODO: Change the data types and how they look.
     def __init__(self, data_path: str) -> None:
         self.data_path = data_path
         try:
@@ -15,6 +16,8 @@ class Data_handler():
 
         self.headers = ['Index', 'Column name',
                         'Data type', 'Number of null values']
+
+        self.get_general_info()
 
     def get_general_info(self) -> None:
         print(

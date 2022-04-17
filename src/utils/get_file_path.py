@@ -1,4 +1,3 @@
-from posixpath import isabs
 import sys
 import os
 import getopt
@@ -51,14 +50,14 @@ def get_file_path(argv: List) -> Tuple[str, str]:
 
 def check_input_path(path: str) -> Optional[str]:
     if not os.path.isfile(path):
-        print('Input file name error.')
+        print('Input file name error. Use -h or --help argument for help.')
         sys.exit(1)
     return os.path.abspath(path)
 
 
 def check_output_file(path: str) -> Optional[str]:
     if not path.endswith('.csv'):
-        print('The extension of the output file should be .csv')
+        print('The extension of the output file should be .csv. Use -h or --help argument for help.')
         sys.exit(1)
     if not os.path.isabs(path):
         return os.getcwd() + '\\' + path

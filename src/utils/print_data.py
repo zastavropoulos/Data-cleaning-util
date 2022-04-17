@@ -1,5 +1,32 @@
-from string import whitespace
-from typing import List
+from typing import Callable, List
+import sys
+
+from .action_handling import *
+
+
+def main_menu(data_handler) -> None:
+    print('1. Change column names')
+    print('2. Change and format data')
+    print('3. Handle null values')
+    print('4. Handle invalid data')
+    print('5. Exit')
+
+    action = int(input('> '))
+
+    while action > 5 or action <= 0:
+        print('Invalid action.')
+        action = int(input('> '))
+
+    if action == 1:
+        change_column_names(data_handler)
+    elif action == 2:
+        format_data()
+    elif action == 3:
+        handle_null_values()
+    elif action == 4:
+        handle_invalid_data()
+    else:
+        sys.exit(0)
 
 
 def print_info_as_table(headers: List[str], data: List[List]) -> None:
