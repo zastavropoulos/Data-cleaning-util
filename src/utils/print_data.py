@@ -1,32 +1,32 @@
-from typing import Callable, List
-import sys
-
-from .action_handling import *
+from typing import List
 
 
-def main_menu(data_handler) -> None:
-    print('1. Change column names')
-    print('2. Change and format data')
-    print('3. Handle null values')
-    print('4. Handle invalid data')
-    print('5. Exit')
+def main_menu() -> int:
+    choices = ['1. Change column names', '2. Change and format data',
+               '3. Handle null values', '4. Handle invalid data', '5. Exit']
+    print('\n'.join(choices))
 
-    action = int(input('> '))
+    return len(choices)
 
-    while action > 5 or action <= 0:
-        print('Invalid action.')
-        action = int(input('> '))
 
-    if action == 1:
-        change_column_names(data_handler)
-    elif action == 2:
-        format_data()
-    elif action == 3:
-        handle_null_values()
-    elif action == 4:
-        handle_invalid_data()
-    else:
-        sys.exit(0)
+def change_column_names_menu() -> int:
+    choices = ['1. Change column name', '2. Format column names',
+               '3. Back']
+    print('\n'.join(choices))
+
+    return len(choices)
+
+
+def change_format_data_menu() -> None:
+    pass
+
+
+def handle_null_values_menu() -> None:
+    pass
+
+
+def handle_invalid_data_menu() -> None:
+    pass
 
 
 def print_info_as_table(headers: List[str], data: List[List]) -> None:

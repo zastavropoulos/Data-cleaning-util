@@ -1,4 +1,8 @@
 import os
+import sys
+from typing import Callable
+
+from .print_data import *
 
 
 def clear_console() -> None:
@@ -8,24 +12,32 @@ def clear_console() -> None:
     os.system(command)
 
 
-def change_column_names(data_handler) -> None:
+def main_menu_handle() -> None:
+    menu_length = main_menu()
+    action = get_input(menu_length)
+    if action == 1:
+        change_column_names()
+    elif action == 2:
+        format_data()
+    elif action == 3:
+        handle_null_values()
+    elif action == 4:
+        handle_invalid_data()
+    else:
+        sys.exit(0)
+
+
+def change_column_names() -> None:
     clear_console()
-    print('1. Change column name')
-    print('2. Format column names')
-    print('3. Back')
-
-    action = int(input('> '))
-
-    while action > 3 or action <= 0:
-        change_column_names(data_handler)
-
+    menu_length = change_column_names_menu()
+    action = get_input(menu_length)
     if action == 1:
         pass
     elif action == 2:
         pass
-    else:
+    elif action == 3:
         clear_console()
-        data_handler.get_general_info()
+        main_menu_handle()
 
 
 def format_data() -> None:
@@ -38,3 +50,13 @@ def handle_null_values() -> None:
 
 def handle_invalid_data() -> None:
     clear_console()
+
+
+def get_input(menu_length: int) -> int:
+    action = int(input('> '))
+
+    while action > menu_length or action <= 0:
+        print('Invalid action.')
+        action = int(input('> '))
+
+    return action
