@@ -1,5 +1,6 @@
 import os
 import sys
+from turtle import clear
 
 
 from data_handler import Data_handler
@@ -24,7 +25,7 @@ def main_menu_handle(data_handler: Data_handler) -> None:
     elif action == 2:
         format_data()
     elif action == 3:
-        handle_null_values()
+        handle_null_values(data_handler)
     elif action == 4:
         handle_invalid_data()
     else:
@@ -48,8 +49,22 @@ def format_data() -> None:
     clear_console()
 
 
-def handle_null_values() -> None:
+def handle_null_values(data_handler: Data_handler) -> None:
     clear_console()
+    menu_length = handle_null_values_menu()
+    action = get_input(menu_length)
+    if action == 1:
+        data_handler.get_df().dropna(inplace=True)
+        handle_null_values(data_handler)
+    elif action == 2:
+        value = str(input('Value to replace > '))
+        data_handler.get_df().fillna(value, inplace=True)
+        handle_null_values(data_handler)
+    elif action == 3:
+        print('Replace column\'s null values with a value')
+    else:
+        clear_console()
+        main_menu_handle(data_handler)
 
 
 def handle_invalid_data() -> None:

@@ -13,7 +13,6 @@ def change_column_names_menu() -> int:
     choices = ['1. Change column name', '2. Format column names',
                '3. Back']
     print('\n'.join(choices))
-
     return len(choices)
 
 
@@ -29,8 +28,12 @@ def change_format_data_menu() -> None:
     pass
 
 
-def handle_null_values_menu() -> None:
-    pass
+def handle_null_values_menu() -> int:
+    choices = ['1. Delete all rows with null values', '2. Replace all null values with a value',
+               '3. Replace column\'s null value with a value', '4. Back']
+    print('\n'.join(choices))
+
+    return len(choices)
 
 
 def handle_invalid_data_menu() -> None:
