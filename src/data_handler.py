@@ -1,3 +1,4 @@
+from typing import Tuple
 import pandas as pd
 import sys
 
@@ -36,3 +37,9 @@ class Data_handler():
                 [[ind, col,  self.dtypes[ind - 1], self.null_counts[ind - 1]]])
 
         return self.data
+
+    def get_column_names(self) -> List[Tuple[int, str]]:
+        return [(ind, col) for ind, col in enumerate(self.df.columns.values, start=1)]
+
+    def get_df(self) -> pd.DataFrame:
+        return self.df

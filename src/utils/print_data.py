@@ -17,6 +17,14 @@ def change_column_names_menu() -> int:
     return len(choices)
 
 
+def format_names_menu() -> int:
+    choices = ['1. Split words with _ (ex. column_name)', '2. Format to lowercase',
+               '3. Format to camelCase', '4. Format to PascalCase', '5. Back']
+    print('\n'.join(choices))
+
+    return len(choices)
+
+
 def change_format_data_menu() -> None:
     pass
 
