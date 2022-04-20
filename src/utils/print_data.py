@@ -30,7 +30,7 @@ def change_format_data_menu() -> None:
 
 def handle_null_values_menu() -> int:
     choices = ['1. Delete all rows with null values', '2. Replace all null values with a value',
-               '3. Replace column\'s null value with a value', '4. Back']
+               '3. Replace column\'s null values with a value', '4. Back']
     print('\n'.join(choices))
 
     return len(choices)

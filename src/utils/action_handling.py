@@ -1,3 +1,4 @@
+from dataclasses import replace
 import os
 import sys
 from turtle import clear
@@ -61,7 +62,15 @@ def handle_null_values(data_handler: Data_handler) -> None:
         data_handler.get_df().fillna(value, inplace=True)
         handle_null_values(data_handler)
     elif action == 3:
-        print('Replace column\'s null values with a value')
+        print('Choose column to replace null values')
+        column_names = data_handler.get_column_names()
+        for ind, col in column_names:
+            print(f'{ind}. {col}')
+        column_index = get_input(len(column_names)) - 1
+        replace_value = str(input('Replace value > '))
+        column_name = column_names[column_index][1]
+        data_handler.get_df()[column_name].fillna(replace_value, inplace=True)
+        handle_null_values(data_handler)
     else:
         clear_console()
         main_menu_handle(data_handler)
