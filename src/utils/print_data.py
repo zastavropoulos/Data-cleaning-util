@@ -24,8 +24,13 @@ def format_names_menu() -> int:
     return len(choices)
 
 
-def change_format_data_menu() -> None:
-    pass
+def change_format_data_menu() -> int:
+    choices = ['1. Replace value in column', '2. Replace value based on condition',
+               '3. Get unique values of a column', '4. Combine two columns',
+               '5. Split column', '6. Drop column', '7. Add column based on condition', '8. Back']
+    print('\n'.join(choices))
+
+    return len(choices)
 
 
 def handle_null_values_menu() -> int:

@@ -1,12 +1,12 @@
-from dataclasses import replace
 import os
 import sys
-from turtle import clear
-
 
 from data_handler import Data_handler
 from .print_data import *
 from .string_manipulation import *
+from .formating_data import *
+from .functions import get_input
+
 
 # TODO: When choosing column to change name give the ability to go back.
 
@@ -24,7 +24,7 @@ def main_menu_handle(data_handler: Data_handler) -> None:
     if action == 1:
         change_column_names(data_handler)
     elif action == 2:
-        format_data()
+        format_data(data_handler)
     elif action == 3:
         handle_null_values(data_handler)
     elif action == 4:
@@ -46,8 +46,32 @@ def change_column_names(data_handler: Data_handler) -> None:
         main_menu_handle(data_handler)
 
 
-def format_data() -> None:
+def format_data(data_handler: Data_handler) -> None:
     clear_console()
+    menu_length = change_format_data_menu()
+    action = get_input(menu_length)
+
+    if action == 1:
+        print('Replace value in column')
+    elif action == 2:
+        print('Replace value based on condition')
+    elif action == 3:
+        clear_console()
+        get_column_unique_values(data_handler)
+        format_data(data_handler)
+    elif action == 4:
+        print('Combine two columns')
+    elif action == 5:
+        print('Split column')
+    elif action == 6:
+        clear_console()
+        drop_column(data_handler)
+        format_data(data_handler)
+    elif action == 7:
+        print('Add column based on condition')
+    else:
+        clear_console()
+        main_menu_handle(data_handler)
 
 
 def handle_null_values(data_handler: Data_handler) -> None:
@@ -119,13 +143,3 @@ def format_column_names(data_handler: Data_handler) -> None:
         format_column_names(data_handler)
     else:
         change_column_names(data_handler)
-
-
-def get_input(menu_length: int) -> int:
-    action = int(input('> '))
-
-    while action > menu_length or action <= 0:
-        print('Invalid action.')
-        action = int(input('> '))
-
-    return action
